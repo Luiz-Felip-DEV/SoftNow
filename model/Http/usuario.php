@@ -3,6 +3,8 @@
 
 class usuario {
 
+    // -> insere um usuario na tabela users do banco
+
     public function inserirUsuario($nome, $sobrenome, $email, $senha, $telefone){
         $dbHosta = 'localhost';
         $dbUsername = 'root';
@@ -13,6 +15,8 @@ class usuario {
         
         $result = mysqli_query($conn,$query);
     }
+
+    // -> serve para mudar a senha do usuario
 
     public function mudarSenha($novaSenha, $email, $telefone){
         $dbHosta = 'localhost';
@@ -25,6 +29,7 @@ class usuario {
         $result = mysqli_query($conn,$query);
     }
 
+    // -> serve para trazer o ID do usuario
 
     public function trazerIdUsuario($email, $senha){
         $dbHosta = 'localhost';
@@ -39,9 +44,9 @@ class usuario {
         return $resultado['id_user'];
     }
 
-    public function excluirUsuario($id){
-            // falta implementar
+    // -> exclui um usuario da tabela users
 
+    public function excluirUsuario($id){
             $dbHosta = 'localhost';
             $dbUsername = 'root';
             $dbPassword = '';
