@@ -57,6 +57,57 @@ class usuario {
             $result = mysqli_query($conn,$query);
     }
     
+    public function telefoneUsuario($idUser){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $query = "select  telefone_user from users where id_user = $idUser";
+
+        $result = mysqli_query($conn,$query);
+        $telefone = mysqli_fetch_array($result);
+        return $telefone['telefone_user'];
+    }
+
+    public function nomeUsuario($id){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $query = "select  nome_user, sobrenome_user from users where id_user = $id";
+
+        $result = mysqli_query($conn,$query);
+        $valor = mysqli_fetch_array($result);
+        $nome = $valor['nome_user'] . " ".$valor['sobrenome_user'];
+        return $nome;
+    }
+
+    public function emailSenhaUsuario($id){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $query = "select  email_user, senha_user from users where id_user = $id";
+
+        $result = mysqli_query($conn,$query);
+        $valor = mysqli_fetch_array($result);
+        return $valor;
+    }
+
+    public function emailAll(){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "SELECT email_user FROM users";
+        $query = mysqli_query($conn, $sql);
+        return $query;
+
+    }
 }
 
 

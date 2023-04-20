@@ -105,7 +105,6 @@ use mysqli;
             $result = mysqli_query($conn,$query);
         }
 
-
     }
 
 ?>

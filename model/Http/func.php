@@ -1,5 +1,11 @@
 <?php 
 
+require_once('usuario.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
     class func{
 
         // serve para checar se o email está escrito corretamente
@@ -13,6 +19,43 @@
                 return false;
             }
         }
+
+        public function testarEmailBanco($email){
+            $user = new usuario();
+            $arr = $user->emailAll();
+
+            while ($resultado = mysqli_fetch_array($arr)){
+                    if ($resultado['email_user'] == $email){
+                        return true;
+                        break;
+                }
+        }
+    }
+
+    public function testarSenha($senha){
+        $result = false;
+        if (strlen($senha) >= 8){
+            $result = true;
+            return $result;
+        }
+        return $result;
+    }
+
+    function formatarTelefone($telefone){
+    $formatedPhone = preg_replace('/[^0-9]/', '', $$telefone);
+    $matches = [];
+    preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
+    if ($matches) {
+        return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+    }
+
+    return $telefone;
+}
+
+public function geradorCodigo(){
+    return rand(3000,1000000);
+}
+
     }
 
 ?>

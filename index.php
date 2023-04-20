@@ -10,6 +10,7 @@ use Model\Http\pagamento;
     require_once('./model/Http/produtos.php');
     require_once('./model/Http/usuario.php');
     require_once('./model/Http/historico.php');
+    require_once('./model/Http/func.php');
 
     /**
      * $prod = new carrinho();
@@ -27,6 +28,8 @@ use Model\Http\pagamento;
     $carr = new carrinho();
     $fav = new favoritos();
     $his = new historico();
+    $func = new func();
+
     
     $id = 2;
     $num_cartao = "999-999-999-21";
@@ -47,7 +50,7 @@ use Model\Http\pagamento;
 
     // para historico
 
-    $iduser = 1;
+    $iduser = 3;
     $nomeUser = "Paulo";
     $sobreNome = "Plinio";
     $nomeProduto = "Controle PS5";
@@ -58,5 +61,10 @@ use Model\Http\pagamento;
     $vezes = 5;
 
 
-    $fav->mostraFavoritos($iduser);
+    //$teste[] = $user->emailSenhaUsuario($iduser);
+    //echo $teste[0]['email_user'];
+    //echo "<br>";
+    //echo $teste['senha_user'];
+
+   header("Location: View/login.php");
 ?>
