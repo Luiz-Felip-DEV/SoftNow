@@ -1,6 +1,27 @@
 <?php 
-
-
+    session_start();
+    if (isset($_POST['submit'])){
+        require_once('../model/Http/usuario.php');
+        require_once('../model/Http/func.php');
+        $user = new usuario();
+        $func = new func();
+        $repet = $user->emailRepetido($_POST['email']);
+        $telefone = $func->formatarTelefone($_POST['telefone']);
+        if ($func->checarEmail($_POST['email']) && $repet === 0){
+                if($user->telefoneRepetido($telefone) === 0){
+                    $user->inserirUsuario(ucwords($_POST['nome']),ucwords( $_POST['sobrenome']), $_POST['email'], $_POST['senha'], $telefone);
+                    $_SESSION['criouConta'] = 1;
+                    header('Location: login.php');
+                    exit();
+                }else{
+                    $mensagem = "Telefone já consta na base de dados, Tente Outro";
+                    echo '<script>alert("'.$mensagem.'");</script>';
+                }
+        }else{
+            $mensagem = "Email inválido ou já consta na base de dados, Tente Novamente!";
+            echo '<script>alert("'.$mensagem.'");</script>';
+        }
+    }
 
 ?>
 
@@ -21,7 +42,7 @@
             <img src="../imgs/cadastro_img.svg" class="left-mudSenha-image" alt="Animação Unicornio">
         </div>
 
-        <form action="confirm_codigo.php" method="POST"> 
+        <form action="" method="POST"> 
             <div class="right-login">
                     <div class="card-login">
                     <h1>CADASTRO</h1>
@@ -48,7 +69,7 @@
 
                             <div class="textfield">
                                 <label for="usuario">Telefone</label>
-                                <input type="number" name="telefone" placeholder="Telefone"required>
+                                <input type="text" name="telefone" placeholder="Telefone"required>
                             </div>
 
                             

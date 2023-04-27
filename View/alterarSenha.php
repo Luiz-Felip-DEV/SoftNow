@@ -1,8 +1,23 @@
 <?php 
-    if (isset($_POST['submit'])){
-        require_once('../controller/esqueciSenhaController');
-        
+    require_once('../model/Http/func.php');
+    require_once('../controller/esqueciSenhaController.php');
+    require_once('../controller/alterarSenhaController.php');
+
+    session_start();
+    $esq = new esqueciSenhaController();
+    if($esq){
+        $fc = new func();
+        $mensa = "DADOS CONFEREM, POR FAVOR ALTERE A SENHA";
+        $fc->alertaTela($mensa);
+
+        if (isset($_POST['submit'])){
+            $altSenhCtr = new alterarSenhaController();
+            $senha = $_POST['senha'];
+            $altSenhCtr->alterarSenhaBanco($senha);
+        }
     }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,7 +25,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESQUECI SENHA</title>
+    <title>ALTERAR SENHA</title>
     <link rel="stylesheet" href="../estilos/login.css">
 </head>
 <body>
@@ -23,15 +38,16 @@
         <form action="" method="POST"> 
             <div class="right-login">
                     <div class="card-login">
-                    <h1>CONFIRMAR DADOS</h1>
+                    <h1>ALTERAR SENHA</h1>
+
                             <div class="textfield">
-                                <label for="usuario">Email</label>
-                                <input type="text" name="EMAIL" placeholder="Email" required>
+                                <label for="usuario">Senha</label>
+                                <input type="text" name="senha" placeholder="Senha" required>
                             </div>
 
                             <div class="textfield">
-                                <label for="usuario">Telefone</label>
-                                <input type="text" name="TELEFONE" placeholder="Telefone" required>
+                                <label for="usuario">Confirmar Senha</label>
+                                <input type="text" name="confirmarSenha" placeholder="Confirmar Senha" required>
                             </div>
                          
 

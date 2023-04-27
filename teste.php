@@ -1,11 +1,20 @@
 <?php 
 
     require_once('.//model/Http/email.php');
+    require_once('.//model/Http/func.php');
+    require_once('.//model/Http/usuario.php');
 
+    //$telefone = "34992472620";
+    //$fu = new func();
+    //$novoTelefone = $fu->formatarTelefone($telefone);
+    //echo $novoTelefone;
+    $emai = new email();
 
-    $em = new email();
-    $email = "luizfelipe098@icloud.com";
+    $email = "bernadinhosilva098@gmail.com";
     $nome = "Luiz Felipe";
-    $em->codigoVerificação($email, $nome);
+
+    $emai->codigoVerificação($email, $nome);
+
+
 
 ?>

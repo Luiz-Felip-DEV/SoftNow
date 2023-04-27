@@ -106,8 +106,61 @@ class usuario {
         $sql = "SELECT email_user FROM users";
         $query = mysqli_query($conn, $sql);
         return $query;
-
     }
+
+    public function emailRepetido($email){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "SELECT email_user FROM users where email_user = '$email'";
+        $query = mysqli_query($conn, $sql);
+        $qtd = mysqli_num_rows($query);
+        return $qtd;
+    }
+
+    public function telefoneRepetido($telefone){
+        require_once('func.php');
+        $fk = new func();
+        $telefoneFormatado = $fk->formatarTelefone($telefone);
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "SELECT telefone_user FROM users where telefone_user = '$telefoneFormatado'";
+        $query = mysqli_query($conn, $sql);
+        $qtd = mysqli_num_rows($query);
+        return $qtd;
+    }
+
+    public function logar($email, $senha){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "select * from users where email_user = '$email' and senha_user = '$senha';";
+        $query = mysqli_query($conn, $sql);
+        $qtd = mysqli_num_rows($query);
+        return $qtd;
+    }
+
+    public function checarAlterarSenha($email, $telefone){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+        $sql = "select * from users where email_user = '$email' and telefone_user = '$telefone';";
+        $query = mysqli_query($conn, $sql);
+        $qtd = mysqli_num_rows($query);
+        return $qtd;
+
+        
+    }
+
 }
 
 

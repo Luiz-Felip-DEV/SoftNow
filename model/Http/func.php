@@ -41,19 +41,24 @@ use PHPMailer\PHPMailer\Exception;
         return $result;
     }
 
-    function formatarTelefone($telefone){
-    $formatedPhone = preg_replace('/[^0-9]/', '', $$telefone);
-    $matches = [];
-    preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
-    if ($matches) {
-        return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+    function formatarTelefone($phone)
+    {
+        $formatedPhone = preg_replace('/[^0-9]/', '', $phone);
+        $matches = [];
+        preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
+        if ($matches) {
+            return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+        }
+    
+        return $phone;
     }
-
-    return $telefone;
-}
 
 public function geradorCodigo(){
     return rand(3000,1000000);
+}
+
+public function alertaTela($mensagem){
+    echo '<script>alert("'.$mensagem.'");</script>';
 }
 
     }

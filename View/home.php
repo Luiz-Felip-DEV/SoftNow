@@ -1,5 +1,14 @@
-<?php 
-    
+<?php
+    session_start();
+    if ($_SESSION['verifica_log'] == 1){
+        $nome = $_SESSION['nome'];
+        $mensagem = "Seja Bem Vindo, $nome";
+        echo '<script>alert("'.$mensagem.'");</script>';
+        
+    }else{
+        header('Location: login.php');
+        exit();
+    }
 ?>
 
 

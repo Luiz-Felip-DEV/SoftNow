@@ -1,5 +1,19 @@
 <?php 
-
+if (isset($_POST['submit'])){
+    require_once('../model/http/usuario.php');
+    $user = new usuario();
+    if ($user->logar($_POST['email'], $_POST['senha'])){
+        session_start();
+        $_SESSION['verifica_log'] = 1;
+        $idUser = $user->trazerIdUsuario($_POST['email'], $_POST['senha']);
+        $_SESSION['nome'] = $user->nomeUsuario($idUser);
+        header('Location: home.php');
+        exit();
+    }else{
+        $mensagem = "DADOS INVALIDOS!";
+        echo '<script>alert("'.$mensagem.'");</script>';
+    }
+}
 ?>
 
 
@@ -18,10 +32,13 @@
         <div class="left-login">
             <h1>Soft Now</h1>
             <h1>Caiu de Paraquedas e Não tem Uma Conta ? <a href="cadastro.php">criar conta</a>                                           </h1>
+            <h1>
+                Já tem conta mas esqueceu a senha ? <a href="esqueciSenha.php">recuperar senha</a>
+            </h1>
             <img src="../imgs/login_img.svg" class="left-mudSenha-image" alt="Animação Unicornio">
         </div>
 
-        <form action="conf_email.php" method="POST"> 
+        <form action="" method="POST"> 
             <div class="right-login">
                     <div class="card-login">
                     <h1>LOGIN</h1>

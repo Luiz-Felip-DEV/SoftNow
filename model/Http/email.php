@@ -5,10 +5,14 @@ use PHPMailer\PHPMailer\Exception;
 require_once('func.php');
 
 class email{
+
+    public function __construct()
+    {
+        require_once('./vendor/autoload.php');    
+    }
     public function codigoVerificação($emai, $nome){
         //Load Composer's autoloader
 
-        require_once('../../vendor/autoload.php');
         $mail = new PHPMailer(true);
     
         try {

@@ -1,23 +1,5 @@
-<?php 
-    require_once('../model/Http/email.php');
-    require_once('../model/Http/usuario.php');
-    $em = new email();
-    $nomeCompleto = $_POST['nome'] . $_POST['sobrenome'];
-    $codigo = $em->codigoVerificação($_POST['email'],$nomeCompleto);
+<?php
     
-    if (isset($_POST['submit'])){
-        if ($codigo == $_POST['codigo'])
-            $user = new usuario();
-            $nome = $_POST['nome'];
-            $sobrenome = $_POST['sobrenome'];
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $telefone = $_POST['telefone'];
-            $user->inserirUsuario($nome,$sobrenome,$email,$senha,$telefone);
-    }else{
-        $mensagem = "ERRO, Codigo Invalido";
-        echo '<script>alert("'.$mensagem.'");</script>';
-    }
 ?>
 
 
@@ -33,8 +15,8 @@
 <body>
     <div class="main-login">
         <div class="left-login">
-            <h1>Soft Now Melhor Empresa de Tecnologia <br>Cadastra-se para entrar nessa comunidade 🔥❤️</h1>
-            <img src="../imgs/cadastro_img.svg" class="left-mudSenha-image" alt="Animação Unicornio">
+            <h1>Soft Now - Nos Confirme o Código<br>Que Foi Enviado Atráves do seu Email</h1>
+            <img src="../imgs/tela_codigo_img.svg" class="left-mudSenha-image" alt="Animação Unicornio">
         </div>
 
         <form action="" method="POST"> 
