@@ -3,17 +3,33 @@
     require_once('.//model/Http/email.php');
     require_once('.//model/Http/func.php');
     require_once('.//model/Http/usuario.php');
+    require_once('.//model/Http/produtos.php');
+    require_once('./model/Http/carrinho.php');
+    require_once('./model/Http/pagamento.php');
+
 
     //$telefone = "34992472620";
     //$fu = new func();
     //$novoTelefone = $fu->formatarTelefone($telefone);
     //echo $novoTelefone;
-    $emai = new email();
+    
+    //$prod = new produtos();
+    //$nome = "Mouse Gamer Redragon Cobra, Chroma RGB";
+    //$valor = 2950.59;
+    //echo $prod->trazerIdProd($nome);
+    //$novaVa = 358.90;
+    //$prod->alterarValorProd(6, $novaVa);
 
-    $email = "bernadinhosilva098@gmail.com";
-    $nome = "Luiz Felipe";
+    //$user = new usuario();
 
-    $emai->codigoVerificação($email, $nome);
+    //echo $user->trazerIdUsuario('marcelasilva12@yahoo.com.br', 'braba1234');
+
+    $car = new carrinho();
+    $pag = new pagamento();
+
+    $valor = 9250.50;
+
+    $pag->finalizarCompraVista($valor, 2);
 
 
 

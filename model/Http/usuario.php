@@ -19,12 +19,15 @@ class usuario {
     // -> serve para mudar a senha do usuario
 
     public function mudarSenha($novaSenha, $email, $telefone){
+        require_once('func.php');
+        $fc = new func();
+        $telefoneFormat = $fc->formatarTelefone($telefone);
         $dbHosta = 'localhost';
         $dbUsername = 'root';
         $dbPassword = '';
         $dbName = 'soft_now';
         $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
-        $query = "update users set senha_user = '$novaSenha' where email_user = '$email' and telefone_user = '$telefone' ";
+        $query = "update users set senha_user = '$novaSenha' where email_user = '$email' and telefone_user = '$telefoneFormat' ";
 
         $result = mysqli_query($conn,$query);
     }

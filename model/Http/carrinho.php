@@ -1,9 +1,5 @@
 <?php 
 
-namespace Model\Http;
-
-use Exception;
-use mysqli;
 
     class carrinho{
         // classe reponsavel pela interação com a tabela carrinho do banco
@@ -105,6 +101,74 @@ use mysqli;
             $result = mysqli_query($conn,$query);
         }
 
-    }
+        public function retornaArrayComPrecos($id){
+            $dbHosta = 'localhost';
+            $dbUsername = 'root';
+            $dbPassword = '';
+            $dbName = 'soft_now';
+            $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+            $query = "select valor_prod from carrinho where id_user = $id";
+            $result = mysqli_query($conn,$query);
+
+            while ($row = mysqli_fetch_assoc($result)){
+               $dados[] = $row;
+            }
+            return $dados;
+        }
+
+        public function calculaValorCompra($id){
+            require_once('pagamento.php');
+            $pg = new pagamento();
+            $dbHosta = 'localhost';
+            $dbUsername = 'root';
+            $dbPassword = '';
+            $dbName = 'soft_now';
+            $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+            $valores[] = $this-> retornaArrayComPrecos($id);
+            $l = $this->qtdLinhas($id);
+            $cont = 0;
+            $valorCompra = 0;
+    
+                while ($cont < $l){
+                    $valoresProd = $this->retornaArrayComPrecos($id);
+
+                    $precoProd = $valoresProd[$cont]['valor_prod'];
+                    $valorCompra += $precoProd; 
+                    
+                    $cont++;
+                }
+
+                return $pg->formatarValor($valorCompra);
+        }
+
+        public function calcularValorCompraDividido($id, $vezes){
+            require_once('pagamento.php');
+            $pg = new pagamento();
+            $dbHosta = 'localhost';
+            $dbUsername = 'root';
+            $dbPassword = '';
+            $dbName = 'soft_now';
+            $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+            $valores[] = $this-> retornaArrayComPrecos($id);
+            $l = $this->qtdLinhas($id);
+            $cont = 0;
+            $valorCompra = 0;
+    
+                while ($cont < $l){
+                    $valoresProd = $this->retornaArrayComPrecos($id);
+
+                    $precoProd = $valoresProd[$cont]['valor_prod'];
+                    $valorCompra += $precoProd; 
+                    
+                    $cont++;
+                }
+
+
+
+                return $pg->formatarValor($valorCompra /$vezes);
+            }
+        }
+
+
 
 ?>

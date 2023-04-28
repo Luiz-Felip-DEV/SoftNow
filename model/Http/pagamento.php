@@ -1,11 +1,7 @@
 <?php 
 
-namespace Model\Http;
-use mysqli;
-
     class pagamento{
         // classe reponsavel pela interação com a tabela dados_pagamento do banco
-
 
         // insere dados de pagamento ao banco
 
@@ -44,6 +40,34 @@ use mysqli;
             $query = "update dados_pagamento set num_cartao = '$numCartao', nome_cartao = '$nomeCartao', data_vencimento = '$dataVencimento', cv_cartao = '$cvCartao', tipo = '$tip' where id_user = $id;";
 
             $result = mysqli_query($conn,$query);
+        }
+
+        public function formatarValor($valor){
+            return number_format($valor,2,",",".");
+        }
+
+        public function finalizarCompraVista($pagClient, $idClient){
+            require_once('carrinho.php');
+            require_once('func.php');
+            $car = new carrinho();
+            $fc = new func();
+
+            $valor = $car->calculaValorCompra($idClient);
+
+            if (doubleval($valor) == $pagClient){
+                $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
+                echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
+                $fc->alertaTela($mes);
+            }else if (doubleval($valor) > $pagClient){
+                $pendencia = $pagClient - $valor;
+                $mes = "Pagamento não concluido, ainda falta $pendencia";
+                echo "Pagamento não concluido, ainda falta $pendencia";
+                $fc->alertaTela($mes);
+            }else{
+                $pendencia = doubleval($valor) - $pagClient;
+                $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
+                echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
+            }
         }
     
     }

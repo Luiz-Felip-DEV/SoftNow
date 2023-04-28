@@ -1,7 +1,15 @@
 <?php 
     if (isset($_POST['submit'])){
-        require_once('../controller/esqueciSenhaController');
-        
+        session_start();
+        require_once('../controller/esqueciSenhaController.php');
+        $esqCTR = new esqueciSenhaController();
+        $email = $_POST['EMAIL'];
+        $telefone = $_POST['TELEFONE'];
+        $_SESSION['ema'] = $email;
+        $_SESSION['tel'] = $telefone;
+        $esqCTR->resultadoEsqueciSenha($email,$telefone);
+
+
     }
 ?>
 <!DOCTYPE html>

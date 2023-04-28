@@ -1,19 +1,20 @@
 <?php 
-    require_once('../model/Http/func.php');
-    require_once('../controller/esqueciSenhaController.php');
-    require_once('../controller/alterarSenhaController.php');
-
     session_start();
-    $esq = new esqueciSenhaController();
-    if($esq){
-        $fc = new func();
-        $mensa = "DADOS CONFEREM, POR FAVOR ALTERE A SENHA";
-        $fc->alertaTela($mensa);
-
-        if (isset($_POST['submit'])){
-            $altSenhCtr = new alterarSenhaController();
-            $senha = $_POST['senha'];
-            $altSenhCtr->alterarSenhaBanco($senha);
+    require_once('../model/Http/func.php');
+    require_once('../model/Http/usuario.php');
+    
+    if (isset($_POST['submit'])){
+        try{
+            $fc = new func();
+            $user = new usuario();
+            $email = $_SESSION['ema'];
+            $tel = $_SESSION['tel'];
+            $user->mudarSenha($_POST['senha'], $email, $tel);
+            $_SESSION['Verify_mud_senha'] = 1;
+            header('Location: login.php');
+        }catch(Exception $e){
+            $_SESSION['Verify_mud_senha'] = 2;
+            $mes = "ERRO: " . $e.getMessage();
         }
     }
 
@@ -35,22 +36,21 @@
             <img src="../imgs/recup_senha_img.svg" class="left-mudSenha-image" alt="Animação Unicornio">
         </div>
 
-        <form action="" method="POST"> 
+        <form action="" method="POST">
             <div class="right-login">
                     <div class="card-login">
                     <h1>ALTERAR SENHA</h1>
 
                             <div class="textfield">
                                 <label for="usuario">Senha</label>
-                                <input type="text" name="senha" placeholder="Senha" required>
+                                <input type="text" name="senha" id="senha" placeholder="Senha" required>
                             </div>
 
                             <div class="textfield">
                                 <label for="usuario">Confirmar Senha</label>
-                                <input type="text" name="confirmarSenha" placeholder="Confirmar Senha" required>
+                                <input type="text" name="confirmarSenha" id="confirmarSenha" placeholder="Confirmar Senha" required>
                             </div>
                          
-
                             <button type="submit" name="submit" id="submit" class="btn-login">enviar</button>
                     </div>
             </div>
