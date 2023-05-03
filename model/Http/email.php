@@ -8,8 +8,9 @@ class email{
 
     public function __construct()
     {
-        require_once('./vendor/autoload.php');    
+        require_once('../vendor/autoload.php');    
     }
+    
     public function codigoVerificação($emai, $nome){
         //Load Composer's autoloader
 

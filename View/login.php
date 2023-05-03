@@ -1,4 +1,6 @@
-<?php 
+<?php
+session_start();
+
 if (isset($_POST['submit'])){
     require_once('../model/http/usuario.php');
     $user = new usuario();
@@ -53,7 +55,6 @@ if (isset($_POST['submit'])){
                                 <i class="bi bi-eye-fill" id="btn_senha" onclick="mostrarSenha()"></i>
                                 
                             </div>
-    
                             <button type="submit" name="submit" id="submit" class="btn-login">enviar</button>
                     </div>
             </div>

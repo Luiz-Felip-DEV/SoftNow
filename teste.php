@@ -24,12 +24,18 @@
 
     //echo $user->trazerIdUsuario('marcelasilva12@yahoo.com.br', 'braba1234');
 
+    // valor compra: 11.093,64
+
     $car = new carrinho();
     $pag = new pagamento();
+    $em = new email();
 
-    $valor = 9250.50;
+    $valor = 10093.64;
 
-    $pag->finalizarCompraVista($valor, 2);
+    $email = "luizfelipe098@icloud.com";
+    $nome = "Luiz Felipe";
+
+    $em->codigoVerificação($email, $nome);
 
 
 

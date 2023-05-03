@@ -101,6 +101,8 @@
             $result = mysqli_query($conn,$query);
         }
 
+        // retorna um array com todos os preços dos produtos aonde o cliente tem no carrinho
+
         public function retornaArrayComPrecos($id){
             $dbHosta = 'localhost';
             $dbUsername = 'root';
@@ -115,6 +117,8 @@
             }
             return $dados;
         }
+
+        // calcula o valor do carrinho do cliente atrávez do array que vem da função retornaArrayComPrecos
 
         public function calculaValorCompra($id){
             require_once('pagamento.php');
@@ -141,6 +145,8 @@
                 return $pg->formatarValor($valorCompra);
         }
 
+         // calcula o valor do carrinho só que dividido do cliente atrávez do array que vem da função retornaArrayComPrecos
+
         public function calcularValorCompraDividido($id, $vezes){
             require_once('pagamento.php');
             $pg = new pagamento();
@@ -162,9 +168,6 @@
                     
                     $cont++;
                 }
-
-
-
                 return $pg->formatarValor($valorCompra /$vezes);
             }
         }

@@ -9,9 +9,16 @@
         $telefone = $func->formatarTelefone($_POST['telefone']);
         if ($func->checarEmail($_POST['email']) && $repet === 0){
                 if($user->telefoneRepetido($telefone) === 0){
-                    $user->inserirUsuario(ucwords($_POST['nome']),ucwords( $_POST['sobrenome']), $_POST['email'], $_POST['senha'], $telefone);
+                    $_SESSION['Nome'] = $_POST['nome'];
+                    $_SESSION['Sobrenome'] = $_POST['sobrenome'];
+                    $_SESSION['Email'] = $_POST['email'];
+                    $_SESSION['Senha'] = $_POST['senha'];
+                    $_SESSION['Telefone'] = $telefone;
                     $_SESSION['criouConta'] = 1;
-                    header('Location: login.php');
+                    require_once('../model/Http/email.php');
+                    $em = new email();
+                    $_SESSION['CodigoVerificacao'] = $em->codigoVerificação($_POST['email'], $_POST['nome']);
+                    header('Location: confirm_codigo.php');
                     exit();
                 }else{
                     $mensagem = "Telefone já consta na base de dados, Tente Outro";

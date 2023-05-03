@@ -46,6 +46,8 @@
             return number_format($valor,2,",",".");
         }
 
+        // finaliza a compra a vista
+
         public function finalizarCompraVista($pagClient, $idClient){
             require_once('carrinho.php');
             require_once('func.php');
@@ -54,22 +56,46 @@
 
             $valor = $car->calculaValorCompra($idClient);
 
-            if (doubleval($valor) == $pagClient){
+            if ($valor == $this->formatarValor($pagClient)){
                 $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
                 echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
                 $fc->alertaTela($mes);
-            }else if (doubleval($valor) > $pagClient){
-                $pendencia = $pagClient - $valor;
-                $mes = "Pagamento não concluido, ainda falta $pendencia";
-                echo "Pagamento não concluido, ainda falta $pendencia";
+            }else if ($valor > $this->formatarValor($pagClient)){
+                $pendencia = $valor - $this->formatarValor($pagClient);
+                $mes = "Pagamento não concluido, ainda falta $this->formatarValor($pendencia)";
+                echo "Pagamento não concluido, ainda falta $this->formatarValor($pendencia)";
                 $fc->alertaTela($mes);
             }else{
-                $pendencia = doubleval($valor) - $pagClient;
                 $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
                 echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
             }
         }
-    
+        
+        // a mexer nessa função ainda
+
+        public function finalizarCompraParc($pagClient, $vzs, $idClient){
+            require_once('carrinho.php');
+            require_once('func.php');
+            $car = new carrinho();
+            $fc = new func();
+
+            $valor = $car->calculaValorCompra($idClient) / $vzs;
+
+            if (doubleval($valor) == doubleval($pagClient)){
+                $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
+                echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now";
+                $fc->alertaTela($mes);
+            }else if (doubleval($valor) > doubleval($pagClient)){
+                $pendencia = doubleval($pagClient) - doubleval($valor);
+                $mes = "Pagamento não concluido, ainda falta $pendencia";
+                echo "Pagamento não concluido, ainda falta $pendencia";
+                $fc->alertaTela($mes);
+            }else{
+                $pendencia = doubleval($valor) - doubleval($pagClient);
+                $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
+                echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
+            }
+    }
     }
 
 
