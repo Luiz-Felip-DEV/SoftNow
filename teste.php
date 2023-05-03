@@ -6,6 +6,7 @@
     require_once('.//model/Http/produtos.php');
     require_once('./model/Http/carrinho.php');
     require_once('./model/Http/pagamento.php');
+    require_once('./model/Http/favoritos.php');
 
 
     //$telefone = "34992472620";
@@ -26,17 +27,15 @@
 
     // valor compra: 11.093,64
 
-    $car = new carrinho();
-    $pag = new pagamento();
-    $em = new email();
+   $fv = new favoritos();
+   $car = new carrinho();
 
-    $valor = 10093.64;
+//    $idUs = 2;
+//    $idPro = 10;
+//    $nomeProd = "IPHONE 12";
+//    $foto = "IPHONE 12";
+//    $valorProd = 4530.50;
 
-    $email = "luizfelipe098@icloud.com";
-    $nome = "Luiz Felipe";
-
-    $em->codigoVerificação($email, $nome);
-
-
+   $car->tirarUmProduto(20, 1);
 
 ?>

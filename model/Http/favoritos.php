@@ -1,11 +1,5 @@
 <?php 
 
-namespace Model\Http;
-
-use Model\conn\conn;
-use mysqli;
-use Exception;
-
 require_once('carrinho.php');
 
     class favoritos{

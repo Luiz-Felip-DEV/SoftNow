@@ -17,8 +17,6 @@
             $result = mysqli_query($conn, $query);
         }
 
-
-
         public function trazerIdProd($nome){
             $dbHosta = 'localhost';
             $dbUsername = 'root';

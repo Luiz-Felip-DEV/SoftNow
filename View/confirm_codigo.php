@@ -6,8 +6,9 @@ if (isset($_POST['submit'])){
     if ($_POST['codigo'] == $_SESSION['CodigoVerificacao']){
         require_once('../model/Http/usuario.php');
         $user = new usuario();
-        $user->inserirUsuario($_SESSION['Nome'], $_SESSION['Sobrenome'], $_SESSION['Email'], $_SESSION['Senha'], $_SESSION['Telefone']);
+        $user->inserirUsuario(ucwords($_SESSION['Nome']), ucwords($_SESSION['Sobrenome']), $_SESSION['Email'], $_SESSION['Senha'], $_SESSION['Telefone']);
         $_SESSION['UserCadas'] = true;
+        header("Location: login.php");
     }else{
         require_once('../model/Http/func.php');
         $fc = new func();

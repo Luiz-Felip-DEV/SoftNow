@@ -141,7 +141,6 @@
                     
                     $cont++;
                 }
-
                 return $pg->formatarValor($valorCompra);
         }
 
@@ -169,6 +168,50 @@
                     $cont++;
                 }
                 return $pg->formatarValor($valorCompra /$vezes);
+            }
+
+            // traz a quantidade do item selecionado
+
+            public function trazerQuantidadeProduto($idProd,$idUs){
+                $dbHosta = 'localhost';
+                $dbUsername = 'root';
+                $dbPassword = '';
+                $dbName = 'soft_now';
+                $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+                $query = "select qtd_prod from carrinho where id_prod = $idProd and id_user = $idUs";
+                $result = mysqli_query($conn,$query);
+                $valor = mysqli_fetch_array($result);
+            
+                return $valor['qtd_prod'];
+                
+            }
+
+            // acrescenta 1 quantidade a mais no produto
+
+            public function acrescentarMaisUmProduto($idProd, $idUs){
+                $dbHosta = 'localhost';
+                $dbUsername = 'root';
+                $dbPassword = '';
+                $dbName = 'soft_now';
+                $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+                $qtdProduto = $this->trazerQuantidadeProduto($idProd, $idUs);
+                $novoQtd = $qtdProduto + 1;
+                $query = "UPDATE carrinho set qtd_prod = '$novoQtd' where id_prod = $idProd and id_user = $idUs";
+                $result = mysqli_query($conn,$query);
+            }
+
+            // tira 1 quantidade a menos no produto
+
+            public function tirarUmProduto($idProd, $idUs){
+                $dbHosta = 'localhost';
+                $dbUsername = 'root';
+                $dbPassword = '';
+                $dbName = 'soft_now';
+                $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+                $qtdProduto = $this->trazerQuantidadeProduto($idProd, $idUs);
+                $novoQtd = $qtdProduto - 1;
+                $query = "UPDATE carrinho set qtd_prod = '$novoQtd' where id_prod = $idProd and id_user = $idUs";
+                $result = mysqli_query($conn,$query);
             }
         }
 
