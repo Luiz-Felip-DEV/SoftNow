@@ -9,6 +9,8 @@
         header('Location: login.php');
         exit();
     }
+
+    
 ?>
 
 
@@ -24,11 +26,13 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="teste">
+    <div class="teste"> 
         <hr>
         <h1>HOME</h1><br>
         <hr>
     </div>
     <p>Será implementado ainda</p>
+
+<a href="">CARRINHO</a>
 </body>
 </html>

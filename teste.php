@@ -1,12 +1,17 @@
 <?php 
 
-    require_once('.//model/Http/email.php');
+    require_once('./model/Http/email.php');
     require_once('.//model/Http/func.php');
     require_once('.//model/Http/usuario.php');
     require_once('.//model/Http/produtos.php');
     require_once('./model/Http/carrinho.php');
     require_once('./model/Http/pagamento.php');
     require_once('./model/Http/favoritos.php');
+    require_once('./classes/usuarioCaracteristicas.php');
+    require_once('./classes/gravadorDeDados.php');
+
+
+   
 
 
     //$telefone = "34992472620";
@@ -27,8 +32,10 @@
 
     // valor compra: 11.093,64
 
-   $fv = new favoritos();
-   $car = new carrinho();
+   // $fv = new favoritos();
+   // $car = new carrinho();
+   // $userCa = new usuarioCaracteristicas();
+   // $user = new usuario();
 
 //    $idUs = 2;
 //    $idPro = 10;
@@ -36,6 +43,24 @@
 //    $foto = "IPHONE 12";
 //    $valorProd = 4530.50;
 
-   $car->tirarUmProduto(20, 1);
+   // $userCa->setNome('Mario');
+   // $userCa->setSobrenome('Fernandes');
+   // $userCa->setEmail('marioaila098@gmail.com');
+   // $userCa->setSenha('123');
+   // $userCa->setTelefone('34992013421');
+   
+   // $user->inserirUsuarioPessornal($userCa);
 
-?>
+
+   // $gv = new gravadorDeDados();
+
+   // $mensagem = 'teste para ver se grava';
+   // $gv->gravarDados($mensagem);
+
+   $em = new email();
+
+   $ema = "luizfelipe098@icloud.com";
+   $nome = "Luiz Felipe";
+
+   $em->codigoVerificação($ema, $nome);
+   ?>

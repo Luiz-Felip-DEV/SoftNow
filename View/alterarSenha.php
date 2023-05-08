@@ -5,20 +5,26 @@
     
     if (isset($_POST['submit'])){
         try{
-            $fc = new func();
-            $user = new usuario();
-            $email = $_SESSION['ema'];
-            $tel = $_SESSION['tel'];
-            $user->mudarSenha($_POST['senha'], $email, $tel);
-            $_SESSION['Verify_mud_senha'] = 1;
-            header('Location: login.php');
+            if ($_POST['senha'] == $_POST['confirmarSenha']){
+                $fc = new func();
+                $user = new usuario();
+                $email = $_SESSION['ema'];
+                $tel = $_SESSION['tel'];
+                $user->mudarSenha($_POST['senha'], $email, $tel);
+                $_SESSION['Verify_mud_senha'] = 1;
+                header('Location: login.php');
+            }else{
+                require_once('../model/Http/func.php');
+                $fct = new func();
+                $mens = "Senhas não são identicas";
+                $fct->alertaTela($mens);
+            }
         }catch(Exception $e){
             $_SESSION['Verify_mud_senha'] = 2;
             $mes = "ERRO: " . $e.getMessage();
         }
     }
-
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

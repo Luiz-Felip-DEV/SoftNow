@@ -16,6 +16,17 @@ class usuario {
         $result = mysqli_query($conn,$query);
     }
 
+    public function inserirUsuarioPessornal(usuarioCaracteristicas $user){
+        $dbHosta = 'localhost';
+        $dbUsername = 'root';
+        $dbPassword = '';
+        $dbName = 'soft_now';
+        $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+        $query = "INSERT INTO users(nome_user,sobrenome_user, email_user,senha_user, telefone_user) VALUES('$user->getNome()','$user->getSobrenome()','$user->getEmail()','$user->getSenha()', '$user->getTelefone()')";
+        
+        $result = mysqli_query($conn,$query);
+    }
+
     // -> serve para mudar a senha do usuario
 
     public function mudarSenha($novaSenha, $email, $telefone){

