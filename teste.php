@@ -11,9 +11,6 @@
     require_once('./classes/gravadorDeDados.php');
 
 
-   
-
-
     //$telefone = "34992472620";
     //$fu = new func();
     //$novoTelefone = $fu->formatarTelefone($telefone);
@@ -28,7 +25,7 @@
 
     //$user = new usuario();
 
-    //echo $user->trazerIdUsuario('marcelasilva12@yahoo.com.br', 'braba1234');
+    //echo $user->trazerIdUsuario('marcelasilva12@yahoo.com.br', 'da');
 
     // valor compra: 11.093,64
 
@@ -60,7 +57,8 @@
    $em = new email();
 
    $ema = "luizfelipe098@icloud.com";
-   $nome = "Luiz Felipe";
+   $nome = "Luiz Felipe";  
 
-   $em->codigoVerificação($ema, $nome);
+   $em->codigoVerificação($ema, $nome); 
+   
    ?>

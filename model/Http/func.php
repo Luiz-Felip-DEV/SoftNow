@@ -21,8 +21,8 @@ use PHPMailer\PHPMailer\Exception;
         }
 
         public function testarEmailBanco($email){
-            $user = new usuario();
-            $arr = $user->emailAll();
+            $user   = new usuario();
+            $arr    = $user->emailAll();
 
             while ($resultado = mysqli_fetch_array($arr)){
                     if ($resultado['email_user'] == $email){
@@ -32,35 +32,38 @@ use PHPMailer\PHPMailer\Exception;
         }
     }
 
-    public function testarSenha($senha){
-        $result = false;
-        if (strlen($senha) >= 8){
-            $result = true;
+        public function testarSenha($senha){
+            $result = false;
+            if (strlen($senha) >= 8){
+                $result = true;
+                return $result;
+            }
             return $result;
         }
-        return $result;
-    }
 
-    function formatarTelefone($phone)
-    {
-        $formatedPhone = preg_replace('/[^0-9]/', '', $phone);
-        $matches = [];
-        preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
-        if ($matches) {
-            return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+        public function formatarTelefone($phone)
+        {
+            $formatedPhone = preg_replace('/[^0-9]/', '', $phone);
+            $matches = [];
+            preg_match('/^([0-9]{2})([0-9]{4,5})([0-9]{4})$/', $formatedPhone, $matches);
+            if ($matches) {
+                return '('.$matches[1].') '.$matches[2].'-'.$matches[3];
+            }
+        
+            return $phone;
         }
-    
-        return $phone;
-    }
 
-public function geradorCodigo(){
-    return rand(3000,1000000);
-}
+        public function geradorCodigo(){
+            return rand(3000,1000000);
+        }
 
-public function alertaTela($mensagem){
-    echo '<script>alert("'.$mensagem.'");</script>';
-}
+        public function alertaTela($mensagem){
+            echo '<script>alert("'.$mensagem.'");</script>';
+        }
 
+        public function logout(){
+            session_destroy();
+        }
     }
 
 ?>

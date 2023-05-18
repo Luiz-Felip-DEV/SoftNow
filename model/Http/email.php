@@ -11,7 +11,8 @@ class email{
         require_once('../vendor/autoload.php');    
     }
     
-    public function codigoVerificação($emai, $nome){
+    public function codigoVerificação($emai, $nome)
+    {
         //Load Composer's autoloader
 
         $mail = new PHPMailer(true);

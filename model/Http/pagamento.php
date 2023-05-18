@@ -5,52 +5,58 @@
 
         // insere dados de pagamento ao banco
 
-        function dadosPagamento($id, $num_cartao, $nome_cartao,$data_vencimento, $cv_cartao, $tipo){
-            $dbHosta = 'localhost';
-            $dbUsername = 'root';
-            $dbPassword = '';
-            $dbName = 'soft_now';
-            $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
-            $query = "INSERT INTO dados_pagamento(id_user, num_cartao, nome_cartao, data_vencimento, cv_cartao, tipo) VALUES ('$id', '$num_cartao', '$nome_cartao', '$data_vencimento', '$cv_cartao', '$tipo')";
+        public function dadosPagamento($id, $num_cartao, $nome_cartao,$data_vencimento, $cv_cartao, $tipo)
+        {
+            $dbHosta        = 'localhost';
+            $dbUsername     = 'root';
+            $dbPassword     = '';
+            $dbName         = 'soft_now';
+            $conn           = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+            $query          = "INSERT INTO dados_pagamento(id_user, num_cartao, nome_cartao, data_vencimento, cv_cartao, tipo) VALUES ('$id', '$num_cartao', '$nome_cartao', '$data_vencimento', '$cv_cartao', '$tipo')";
     
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
         // exclui metodos de pagamento
 
-        public function excluirDadoPagamento($id){
-            $dbHosta = 'localhost';
-            $dbUsername = 'root';
-            $dbPassword = '';
-            $dbName = 'soft_now';
-            $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
-            $query = "delete from dados_pagamento where id_user = $id; ";
+        public function excluirDadoPagamento($id)
+        {
+            $dbHosta        = 'localhost';
+            $dbUsername     = 'root';
+            $dbPassword     = '';
+            $dbName         = 'soft_now';
+            $conn           = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+            $query          = "delete from dados_pagamento where id_user = $id; ";
 
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
         // função responsavel por atualizar os dados de pagamento no banco
         
-        public function atualizarDados($numCartao,$nomeCartao, $dataVencimento, $cvCartao, $id, $tip){
-            $dbHosta = 'localhost';
-            $dbUsername = 'root';
-            $dbPassword = '';
-            $dbName = 'soft_now';
-            $conn = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
-            $query = "update dados_pagamento set num_cartao = '$numCartao', nome_cartao = '$nomeCartao', data_vencimento = '$dataVencimento', cv_cartao = '$cvCartao', tipo = '$tip' where id_user = $id;";
+        public function atualizarDados($numCartao,$nomeCartao, $dataVencimento, $cvCartao, $id, $tip)
+        {
+            $dbHosta        = 'localhost';
+            $dbUsername     = 'root';
+            $dbPassword     = '';
+            $dbName         = 'soft_now';
+            $conn           = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
+            $query          = "update dados_pagamento set num_cartao = '$numCartao', nome_cartao = '$nomeCartao', data_vencimento = '$dataVencimento', cv_cartao = '$cvCartao', tipo = '$tip' where id_user = $id;";
 
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
-        public function formatarValor($valor){
+        public function formatarValor($valor)
+        {
             return number_format($valor,2,",",".");
         }
 
         // finaliza a compra a vista
 
-        public function finalizarCompraVista($pagClient, $idClient){
+        public function finalizarCompraVista($pagClient, $idClient)
+        {
             require_once('carrinho.php');
             require_once('func.php');
+
             $car = new carrinho();
             $fc = new func();
 
@@ -73,9 +79,11 @@
         
         // a mexer nessa função ainda
 
-        public function finalizarCompraParc($pagClient, $vzs, $idClient){
+        public function finalizarCompraParc($pagClient, $vzs, $idClient)
+        {
             require_once('carrinho.php');
             require_once('func.php');
+            
             $car = new carrinho();
             $fc = new func();
 
