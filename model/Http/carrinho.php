@@ -209,12 +209,12 @@
             $dbUsername     = 'root';
             $dbPassword     = '';
             $dbName         = 'soft_now';
-            $conn = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
-            $qtdProduto = $this->trazerQuantidadeProduto($idProd, $idUs);
-            $novoQtd = $qtdProduto + 1;
-            $query = "UPDATE carrinho set qtd_prod = '$novoQtd' where id_prod = $idProd and id_user = $idUs";
+            $conn           = mysqli_connect($dbHosta,$dbUsername,$dbPassword, $dbName);
+            $qtdProduto     = $this->trazerQuantidadeProduto($idProd, $idUs);
+            $novoQtd        = $qtdProduto + 1;
+            $query          = "UPDATE carrinho set qtd_prod = '$novoQtd' where id_prod = $idProd and id_user = $idUs";
 
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
             // tira 1 quantidade a menos no produto

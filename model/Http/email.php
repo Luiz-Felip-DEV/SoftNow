@@ -36,13 +36,13 @@ class email{
     
             //Content
             $mail->isHTML(true);                                  
-            $mail->Subject = 'Codigo de Confirmação';
-            $func = new func();
-            $numAleat = $func->geradorCodigo();
+            $mail->Subject     = 'Codigo de Confirmação';
+            $func              = new func();
+            $numAleat          = $func->geradorCodigo();
     
-            $body = "Segue o seu codigo para validar seu email.<br><br><br><br><b>codigo = $numAleat<b>";
+            $body              = "Segue o seu codigo para validar seu email.<br><br><br><br><b>codigo = $numAleat<b>";
             
-            $mail->Body    = $body;
+            $mail->Body        = $body;
     
             $mail->send();
             echo 'E-mail enviado com sucesso!';

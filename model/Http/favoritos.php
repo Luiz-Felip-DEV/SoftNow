@@ -16,7 +16,7 @@ require_once('carrinho.php');
             $conn           = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
             $query          = "INSERT INTO favoritos (id_usuario, id_prod, nome_prod, foto_prod, valor_prod) VALUES ('$idUser', '$idProdut', '$nomeProdut', '$fotoProd', '$valorProd')";
 
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
         // remove um item dos favoritos
@@ -30,7 +30,7 @@ require_once('carrinho.php');
             $conn           = new mysqli($dbHosta,$dbUsername,$dbPassword,$dbName);
             $query          = "delete from favoritos where id_usuario = '$idUsu' and id_prod = '$idProd'";
 
-            $result = mysqli_query($conn,$query);
+            $result         = mysqli_query($conn,$query);
         }
 
         // -> retorna quantas linhas de favoritos o usuario tem
