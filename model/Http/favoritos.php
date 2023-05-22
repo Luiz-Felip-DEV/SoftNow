@@ -95,6 +95,6 @@ require_once('carrinho.php');
             echo "ERRO, Mensagem: ".$e->getMessage();
         }
             }
-    }
+}
 
 ?>

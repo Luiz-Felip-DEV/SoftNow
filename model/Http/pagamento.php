@@ -103,8 +103,8 @@
                 $mes = "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
                 echo "Pagamento realizado com sucesso, Obrigado por comprar na Soft Now, o valor a mais passado será extornado a sua compra";
             }
-    }
-    }
+        }
+}
 
 
 ?>

@@ -10,7 +10,8 @@ use PHPMailer\PHPMailer\Exception;
 
         // serve para checar se o email está escrito corretamente
         
-        public function checarEmail($email){
+        public function checarEmail($email)
+        {
             if (strpos($email, '@') && strpos($email, 'gmail.com') || strpos($email, 'icloud.com') || strpos($email, 'hotmail.com') || strpos($email, 'yahoo.com') || strpos($email, 'outlook.com')){
                 echo "<script>console.log('Email confirmado!') </script>";
                 return true;
@@ -20,7 +21,8 @@ use PHPMailer\PHPMailer\Exception;
             }
         }
 
-        public function testarEmailBanco($email){
+        public function testarEmailBanco($email)
+        {
             $user   = new usuario();
             $arr    = $user->emailAll();
 
@@ -28,11 +30,12 @@ use PHPMailer\PHPMailer\Exception;
                     if ($resultado['email_user'] == $email){
                         return true;
                         break;
-                }
+                    }
+            }
         }
-    }
 
-        public function testarSenha($senha){
+        public function testarSenha($senha)
+        {
             $result = false;
             if (strlen($senha) >= 8){
                 $result = true;
@@ -53,17 +56,20 @@ use PHPMailer\PHPMailer\Exception;
             return $phone;
         }
 
-        public function geradorCodigo(){
+        public function geradorCodigo()
+        {
             return rand(3000,1000000);
         }
 
-        public function alertaTela($mensagem){
+        public function alertaTela($mensagem)
+        {
             echo '<script>alert("'.$mensagem.'");</script>';
         }
 
-        public function logout(){
+        public function logout()
+        {
             session_destroy();
         }
-    }
+}
 
 ?>

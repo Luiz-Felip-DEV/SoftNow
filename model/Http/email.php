@@ -49,7 +49,7 @@ class email{
             return $numAleat;
         } catch (Exception $e) {
             echo "Erro ao enviar o email: {$mail->ErrorInfo}";
-    }
+        }
     }
 } 
 
