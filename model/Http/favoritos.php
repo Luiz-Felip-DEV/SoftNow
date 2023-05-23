@@ -81,9 +81,9 @@ require_once('carrinho.php');
                 while ($cont < $l){
                     $favoritosUser = $this->trazerFavoritos($id);
                     echo "==================================================="."<br>";
-                    $nomeProduto = $favoritosUser[$cont]['nome_prod'];
-                    $qtdProduto = $favoritosUser[$cont]['foto_prod'];
-                    $valorProduto = $favoritosUser[$cont]['valor_prod'];
+                    $nomeProduto    = $favoritosUser[$cont]['nome_prod'];
+                    $qtdProduto     = $favoritosUser[$cont]['foto_prod'];
+                    $valorProduto   = $favoritosUser[$cont]['valor_prod'];
                     
                     echo "NOME: ". $nomeProduto."<br>";
                     echo "FOTO: ". $qtdProduto."<br>";
@@ -95,6 +95,6 @@ require_once('carrinho.php');
             echo "ERRO, Mensagem: ".$e->getMessage();
         }
             }
-}
+ }
 
 ?>
